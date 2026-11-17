@@ -1,1 +1,397 @@
 
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz de la Tabla Periódica</title>
+
+    <!-- ESTILOS CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tarjeta {
+            background-color: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #234e70;
+        }
+
+        .contador {
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        .pregunta {
+            font-size: 22px;
+            margin: 25px 0;
+        }
+
+        .opciones {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .opcion {
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #234e70;
+            border-radius: 8px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .opcion:hover:not(:disabled) {
+            background-color: #dbeafe;
+        }
+
+        .correcta {
+            background-color: #bbf7d0;
+            border-color: #16a34a;
+        }
+
+        .incorrecta {
+            background-color: #fecaca;
+            border-color: #dc2626;
+        }
+
+        .boton-principal {
+            margin-top: 25px;
+            padding: 12px 25px;
+            background-color: #234e70;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .boton-principal:disabled {
+            background-color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        #mensaje {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @media (max-width: 450px) {
+            .opciones {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="tarjeta">
+
+        <h1>⚛️ Tabla Periódica</h1>
+
+        <p>
+            Descubre el número atómico
+            de cada elemento químico.
+        </p>
+
+        <!-- ZONA DEL CUESTIONARIO -->
+        <section id="zonaJuego">
+
+            <p id="contador" class="contador"></p>
+
+            <h2 id="pregunta" class="pregunta">
+                ¿Cuál es el número atómico?
+            </h2>
+
+            <!-- AQUÍ APARECERÁN LAS CINCO OPCIONES -->
+            <div id="opciones" class="opciones"></div>
+
+            <!-- MENSAJE DE RESPUESTA -->
+            <p id="mensaje" role="status" aria-live="polite"></p>
+
+            <button
+                id="btnSiguiente"
+                class="boton-principal"
+                disabled>
+                Siguiente pregunta
+            </button>
+
+        </section>
+
+        <!-- RESULTADO FINAL -->
+        <section id="resultado" hidden>
+
+            <h2>¡Terminaste el cuestionario!</h2>
+
+            <p id="textoResultado"></p>
+
+            <button
+                id="btnReiniciar"
+                class="boton-principal">
+                Volver a jugar
+            </button>
+
+        </section>
+
+    </main>
+
+    <!-- CÓDIGO JAVASCRIPT -->
+    <script>
+
+        // LISTA DE ELEMENTOS QUÍMICOS
+        const elementos = [
+            { nombre: "Hidrógeno", numero: 1 },
+            { nombre: "Helio", numero: 2 },
+            { nombre: "Litio", numero: 3 },
+            { nombre: "Berilio", numero: 4 },
+            { nombre: "Boro", numero: 5 },
+            { nombre: "Carbono", numero: 6 },
+            { nombre: "Nitrógeno", numero: 7 },
+            { nombre: "Oxígeno", numero: 8 },
+            { nombre: "Flúor", numero: 9 },
+            { nombre: "Neón", numero: 10 },
+            { nombre: "Sodio", numero: 11 },
+            { nombre: "Magnesio", numero: 12 },
+            { nombre: "Aluminio", numero: 13 },
+            { nombre: "Silicio", numero: 14 },
+            { nombre: "Fósforo", numero: 15 },
+            { nombre: "Azufre", numero: 16 },
+            { nombre: "Cloro", numero: 17 },
+            { nombre: "Argón", numero: 18 },
+            { nombre: "Potasio", numero: 19 },
+            { nombre: "Calcio", numero: 20 }
+        ];
+
+        // VARIABLES DEL CUESTIONARIO
+        let preguntas = [];
+        let indiceActual = 0;
+        let puntaje = 0;
+        let respondida = false;
+
+        // CONECTAMOS JAVASCRIPT CON HTML
+        const contador = document.getElementById("contador");
+        const pregunta = document.getElementById("pregunta");
+        const opciones = document.getElementById("opciones");
+        const mensaje = document.getElementById("mensaje");
+
+        const btnSiguiente =
+            document.getElementById("btnSiguiente");
+
+        const zonaJuego =
+            document.getElementById("zonaJuego");
+
+        const resultado =
+            document.getElementById("resultado");
+
+        const textoResultado =
+            document.getElementById("textoResultado");
+
+        const btnReiniciar =
+            document.getElementById("btnReiniciar");
+
+
+        // FUNCIÓN PARA MEZCLAR LOS ELEMENTOS
+        function mezclar(lista) {
+
+            const copia = [...lista];
+
+            for (let i = copia.length - 1; i > 0; i--) {
+
+                const j = Math.floor(Math.random() * (i + 1));
+
+                [copia[i], copia[j]] = [copia[j], copia[i]];
+            }
+
+            return copia;
+        }
+
+
+        // INICIAR EL CUESTIONARIO
+        function iniciarQuiz() {
+
+            preguntas = mezclar(elementos).slice(0, 10);
+
+            indiceActual = 0;
+            puntaje = 0;
+
+            zonaJuego.hidden = false;
+            resultado.hidden = true;
+
+            mostrarPregunta();
+        }
+
+
+        // MOSTRAR UNA PREGUNTA
+        function mostrarPregunta() {
+
+            if (indiceActual >= preguntas.length) {
+                mostrarResultado();
+                return;
+            }
+
+            respondida = false;
+
+            const actual = preguntas[indiceActual];
+
+            contador.textContent =
+                "Pregunta " + (indiceActual + 1) +
+                " de " + preguntas.length;
+
+            pregunta.textContent =
+                "¿Cuál es el número atómico del " +
+                actual.nombre + "?";
+
+            mensaje.textContent = "";
+
+            btnSiguiente.disabled = true;
+
+            opciones.replaceChildren();
+
+
+            // GENERAR CUATRO RESPUESTAS INCORRECTAS
+            const numeros = Array.from(
+                { length: 20 },
+                (_, i) => i + 1
+            );
+
+            const distractores = mezclar(
+                numeros.filter(numero => numero !== actual.numero)
+            ).slice(0, 4);
+
+
+            // UNIR LA RESPUESTA CORRECTA CON LAS CUATRO INCORRECTAS
+            const respuestas = mezclar([
+                actual.numero,
+                ...distractores
+            ]);
+
+
+            // CREAR LOS CINCO BOTONES
+            respuestas.forEach(numero => {
+
+                const boton = document.createElement("button");
+
+                boton.textContent = numero;
+                boton.className = "opcion";
+
+                boton.addEventListener("click", function () {
+
+                    comprobarRespuesta(numero, actual.numero, boton);
+
+                });
+
+                opciones.appendChild(boton);
+
+            });
+
+        }
+
+
+        // COMPROBAR SI LA RESPUESTA ES CORRECTA
+        function comprobarRespuesta(seleccionada, correcta, boton) {
+
+            if (respondida) {
+                return;
+            }
+
+            respondida = true;
+
+            const botones = opciones.querySelectorAll("button");
+
+            botones.forEach(b => {
+
+                b.disabled = true;
+
+                if (Number(b.textContent) === correcta) {
+                    b.classList.add("correcta");
+                }
+
+            });
+
+
+            if (seleccionada === correcta) {
+
+                puntaje++;
+
+                mensaje.textContent =
+                    "¡Correcto! Muy bien.";
+
+            } else {
+
+                boton.classList.add("incorrecta");
+
+                mensaje.textContent =
+                    "Incorrecto. La respuesta correcta es " +
+                    correcta + ".";
+
+            }
+
+            btnSiguiente.disabled = false;
+
+            if (indiceActual === preguntas.length - 1) {
+                btnSiguiente.textContent = "Ver resultado";
+            } else {
+                btnSiguiente.textContent = "Siguiente pregunta";
+            }
+
+        }
+
+
+        // AVANZAR A LA SIGUIENTE PREGUNTA
+        btnSiguiente.addEventListener("click", function () {
+
+            indiceActual++;
+
+            mostrarPregunta();
+
+        });
+
+
+        // MOSTRAR EL RESULTADO FINAL
+        function mostrarResultado() {
+
+            zonaJuego.hidden = true;
+            resultado.hidden = false;
+
+            textoResultado.textContent =
+                "Obtuviste " + puntaje +
+                " respuestas correctas de " +
+                preguntas.length + ".";
+
+        }
+
+
+        // VOLVER A JUGAR
+        btnReiniciar.addEventListener("click", iniciarQuiz);
+
+
+        // EJECUTAR EL CUESTIONARIO AL ABRIR LA PÁGINA
+        iniciarQuiz();
+
+    </script>
+
+</body>
+</html>
