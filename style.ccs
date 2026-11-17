@@ -1,90 +1,95 @@
-font-family: Arial, sans-serif;
-            background-color: #eef2f7;
-            margin: 0;
-            padding: 30px;
-            display: flex;
-            justify-content: center;
-        }
 
-        .tarjeta {
-            background-color: white;
-            width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+/* ESTILOS CSS */
 
-        h1 {
-            color: #234e70;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f7;
+    margin: 0;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
 
-        .contador {
-            color: #64748b;
-            font-weight: bold;
-        }
+.tarjeta {
+    background-color: white;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
-        .pregunta {
-            font-size: 22px;
-            margin: 25px 0;
-        }
+h1 {
+    color: #234e70;
+}
 
-        .opciones {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-        }
+.contador {
+    color: #64748b;
+    font-weight: bold;
+}
 
-        .opcion {
-            padding: 15px;
-            font-size: 18px;
-            border: 2px solid #234e70;
-            border-radius: 8px;
-            background-color: white;
-            cursor: pointer;
-        }
+.pregunta {
+    font-size: 22px;
+    margin: 25px 0;
+}
 
-        .opcion:hover:not(:disabled) {
-            background-color: #dbeafe;
-        }
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
 
-        .correcta {
-            background-color: #bbf7d0;
-            border-color: #16a34a;
-        }
+.opcion {
+    padding: 15px;
+    font-size: 18px;
+    border: 2px solid #234e70;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+}
 
-        .incorrecta {
-            background-color: #fecaca;
-            border-color: #dc2626;
-        }
+.opcion:hover:not(:disabled) {
+    background-color: #dbeafe;
+}
 
-        .boton-principal {
-            margin-top: 25px;
-            padding: 12px 25px;
-            background-color: #234e70;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.correcta {
+    background-color: #bbf7d0;
+    border-color: #16a34a;
+}
 
-        .boton-principal:disabled {
-            background-color: #94a3b8;
-            cursor: not-allowed;
-        }
+.incorrecta {
+    background-color: #fecaca;
+    border-color: #dc2626;
+}
 
-        #mensaje {
-            font-weight: bold;
-            margin-top: 20px;
-        }
+.boton-principal {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background-color: #234e70;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        [hidden] {
-            display: none !important;
-        }
+.boton-principal:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}
 
-        @media (max-width: 450px) {
-            .opciones {
-                grid-template-columns: repeat(3, 1fr);
-            }
+#mensaje {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 450px) {
+    .opciones {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
