@@ -1,5 +1,4 @@
-body {
-            font-family: Arial, sans-serif;
+font-family: Arial, sans-serif;
             background-color: #eef2f7;
             margin: 0;
             padding: 30px;
@@ -89,4 +88,3 @@ body {
             .opciones {
                 grid-template-columns: repeat(3, 1fr);
             }
-        }
