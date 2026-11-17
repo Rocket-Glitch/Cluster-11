@@ -1,7 +1,4 @@
-    <!-- CÓDIGO JAVASCRIPT -->
-    <script>
 
-        // LISTA DE ELEMENTOS QUÍMICOS
         const elementos = [
             { nombre: "Hidrógeno", numero: 1 },
             { nombre: "Helio", numero: 2 },
@@ -230,5 +227,3 @@
 
         // EJECUTAR EL CUESTIONARIO AL ABRIR LA PÁGINA
         iniciarQuiz();
-
-    </script>
