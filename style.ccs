@@ -1,6 +1,4 @@
-  <!-- ESTILOS CSS -->
-    <style>
-        body {
+body {
             font-family: Arial, sans-serif;
             background-color: #eef2f7;
             margin: 0;
@@ -92,4 +90,3 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-    </style>
