@@ -1,26 +1,24 @@
-
-        const elementos = [
-            { nombre: "Hidrógeno", numero: 1 },
-            { nombre: "Helio", numero: 2 },
-            { nombre: "Litio", numero: 3 },
-            { nombre: "Berilio", numero: 4 },
-            { nombre: "Boro", numero: 5 },
-            { nombre: "Carbono", numero: 6 },
-            { nombre: "Nitrógeno", numero: 7 },
-            { nombre: "Oxígeno", numero: 8 },
-            { nombre: "Flúor", numero: 9 },
-            { nombre: "Neón", numero: 10 },
-            { nombre: "Sodio", numero: 11 },
-            { nombre: "Magnesio", numero: 12 },
-            { nombre: "Aluminio", numero: 13 },
-            { nombre: "Silicio", numero: 14 },
-            { nombre: "Fósforo", numero: 15 },
-            { nombre: "Azufre", numero: 16 },
-            { nombre: "Cloro", numero: 17 },
-            { nombre: "Argón", numero: 18 },
-            { nombre: "Potasio", numero: 19 },
-            { nombre: "Calcio", numero: 20 }
-        ];
+const elementos = [
+{ nombre: "Hidrógeno", numero: 1 },
+{ nombre: "Helio", numero: 2 },
+{ nombre: "Litio", numero: 3 },
+{ nombre: "Berilio", numero: 4 },
+{ nombre: "Boro", numero: 5 },
+{ nombre: "Carbono", numero: 6 },
+{ nombre: "Nitrógeno", numero: 7 },
+{ nombre: "Oxígeno", numero: 8 },
+{ nombre: "Flúor", numero: 9 },
+{ nombre: "Neón", numero: 10 },
+{ nombre: "Sodio", numero: 11 },
+{ nombre: "Magnesio", numero: 12 },
+{ nombre: "Aluminio", numero: 13 },
+{ nombre: "Silicio", numero: 14 },
+{ nombre: "Fósforo", numero: 15 },
+{ nombre: "Azufre", numero: 16 },
+{ nombre: "Cloro", numero: 17 },
+{ nombre: "Argón", numero: 18 },
+{ nombre: "Potasio", numero: 19 },
+{ nombre: "Calcio", numero: 20 } ];
 
         // VARIABLES DEL CUESTIONARIO
         let preguntas = [];
