@@ -21,6 +21,9 @@ const elementos = [
     { nombre: "Calcio", numero: 20 }
 ];
 
+const TIEMPO_ERROR = 2000;
+const TIEMPO_CORRECTO = 900;
+
 let preguntas = [];
 let indiceActual = 0;
 let bloqueado = false;
@@ -30,42 +33,59 @@ const inicio = document.getElementById("inicio");
 const zonaJuego = document.getElementById("zonaJuego");
 const finalizado = document.getElementById("finalizado");
 const pregunta = document.getElementById("pregunta");
+const contador = document.getElementById("contador");
 const opciones = document.getElementById("opciones");
 const mensaje = document.getElementById("mensaje");
 const btnComenzar = document.getElementById("btnComenzar");
-const btnInicio = document.getElementById("btnInicio");
+const btnReiniciar = document.getElementById("btnReiniciar");
+const btnPortada = document.getElementById("btnPortada");
 
 function mezclar(lista) {
     const copia = [...lista];
+
     for (let i = copia.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [copia[i], copia[j]] = [copia[j], copia[i]];
     }
+
     return copia;
 }
 
-function volverAlInicio() {
-    if (temporizador) {
+function limpiarTemporizador() {
+    if (temporizador !== null) {
         clearTimeout(temporizador);
         temporizador = null;
     }
+}
 
+function volverAlInicio() {
+    limpiarTemporizador();
+
+    document.body.classList.remove("modo-quiz");
     inicio.hidden = false;
     zonaJuego.hidden = true;
     finalizado.hidden = true;
+
     preguntas = [];
     indiceActual = 0;
     bloqueado = false;
     opciones.replaceChildren();
     mensaje.textContent = "";
+    mensaje.className = "mensaje";
 }
 
 function iniciarQuiz() {
+    limpiarTemporizador();
+
     preguntas = mezclar(elementos);
     indiceActual = 0;
+    bloqueado = false;
+
+    document.body.classList.add("modo-quiz");
     inicio.hidden = true;
     finalizado.hidden = true;
     zonaJuego.hidden = false;
+
     mostrarPregunta();
 }
 
@@ -79,9 +99,10 @@ function mostrarPregunta() {
     bloqueado = false;
     const actual = preguntas[indiceActual];
 
+    contador.textContent = `Pregunta ${indiceActual + 1} de ${preguntas.length}`;
     pregunta.textContent = `¿Cuál es el número atómico del ${actual.nombre}?`;
     mensaje.textContent = "";
-    mensaje.className = "";
+    mensaje.className = "mensaje";
     opciones.replaceChildren();
 
     const numeros = Array.from({ length: 20 }, (_, i) => i + 1);
@@ -94,8 +115,11 @@ function mostrarPregunta() {
         const boton = document.createElement("button");
         boton.type = "button";
         boton.textContent = numero;
+        boton.dataset.valor = String(numero);
         boton.className = "opcion";
-        boton.addEventListener("click", () => responder(numero, actual.numero, boton));
+        boton.addEventListener("click", () => {
+            responder(numero, actual.numero, boton);
+        });
         opciones.appendChild(boton);
     });
 }
@@ -104,34 +128,48 @@ function responder(seleccionada, correcta, botonSeleccionado) {
     if (bloqueado) return;
     bloqueado = true;
 
-    // Solo se colorea la alternativa que el usuario seleccionó.
+    let tiempoDeEspera;
+
     if (seleccionada === correcta) {
         botonSeleccionado.classList.add("correcta");
         mensaje.textContent = "¡Correcto!";
-        mensaje.className = "mensaje-correcto";
+        mensaje.classList.add("mensaje-correcto");
+        tiempoDeEspera = TIEMPO_CORRECTO;
     } else {
+        // La alternativa elegida se marca en rojo.
         botonSeleccionado.classList.add("incorrecta");
-        mensaje.textContent = "¡Inténtalo otra vez más adelante!";
-        mensaje.className = "mensaje-error";
 
-        // La pregunta incorrecta se mueve al final de las pendientes.
+        // La alternativa correcta también se revela en verde.
+        const botonCorrecto = [...opciones.querySelectorAll("button")]
+            .find(boton => Number(boton.dataset.valor) === correcta);
+
+        if (botonCorrecto) {
+            botonCorrecto.classList.add("correcta");
+        }
+
+        mensaje.textContent = `Incorrecto. La respuesta correcta es ${correcta}.`;
+        mensaje.classList.add("mensaje-error");
+
+        // La pregunta fallada vuelve al final para poder repasarla.
         preguntas.push(preguntas[indiceActual]);
+        tiempoDeEspera = TIEMPO_ERROR;
     }
 
-    // Se bloquean las opciones sin cambiar su color.
+    // Se bloquean todas las alternativas durante la corrección.
     opciones.querySelectorAll("button").forEach(boton => {
         boton.disabled = true;
     });
 
-    // Avance automático después de mostrar brevemente el color elegido.
+    // La pantalla conserva los colores antes de pasar a la siguiente pregunta.
     temporizador = setTimeout(() => {
         temporizador = null;
         indiceActual++;
         mostrarPregunta();
-    }, 850);
+    }, tiempoDeEspera);
 }
 
 btnComenzar.addEventListener("click", iniciarQuiz);
-btnInicio.addEventListener("click", volverAlInicio);
+btnReiniciar.addEventListener("click", iniciarQuiz);
+btnPortada.addEventListener("click", volverAlInicio);
 
 volverAlInicio();
