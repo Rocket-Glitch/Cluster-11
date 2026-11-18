@@ -1,64 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Quiz de la Tabla Periódica</title>
     <link rel="stylesheet" href="style.css">
-  
 </head>
-
 <body>
     <main class="tarjeta">
-<h1> ⚛️ - Tabla Periódica </h1>
-<p> ✮ - 118 Elementos </p>
+        <section id="inicio">
+            <h1>⚛️ Tabla Periódica</h1>
+            <p class="subtitulo">Número atómico</p>
+            <p class="introduccion">Practica, aprende y descubre los números atómicos de los elementos.</p>
+            <button id="btnComenzar" class="boton-principal">Comenzar el quiz</button>
+        </section>
 
-<section id="zonaJuego">
-
-            <p id="contador" class="contador"></p>
-
-            <h2 id="pregunta" class="pregunta">
-                ¿Cuál es el número atómico?
-            </h2>
-
-            <!-- AQUÍ APARECERÁN LAS CINCO OPCIONES -->
+        <section id="zonaJuego" hidden>
+            <h2 id="pregunta" class="pregunta"></h2>
             <div id="opciones" class="opciones"></div>
-
-            <!-- MENSAJE DE RESPUESTA -->
             <p id="mensaje" role="status" aria-live="polite"></p>
-
-            <button
-                id="btnSiguiente"
-                class="boton-principal"
-                disabled>
-                Siguiente pregunta
-            </button>
-
+            <button id="btnSiguiente" class="boton-principal" hidden>Continuar</button>
         </section>
 
-
-        
-
-        <!-- RESULTADO FINAL -->
-        <section id="resultado" hidden>
-
-            <h2>¡Terminaste el cuestionario!</h2>
-
-            <p id="textoResultado"></p>
-
-            <button
-                id="btnReiniciar"
-                class="boton-principal">
-                Volver a jugar
-            </button>
-
+        <section id="finalizado" hidden>
+            <h2>¡Muy bien! Has completado el aprendizaje.</h2>
+            <p>Has respondido correctamente todos los elementos.</p>
+            <button id="btnInicio" class="boton-principal">Volver al inicio</button>
         </section>
-
     </main>
-
-
     <script src="script.js"></script>
 </body>
 </html>
