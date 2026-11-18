@@ -1,94 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#c7e8ce">
-    <title>Tabla Periódica | Número atómico</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c7e8ce">
+<title>Tabla Periódica | Número atómico</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
-    <body>
-    <main class="app">
-        <!-- PORTADA: inspirada en las tarjetas de Google Forms -->
-        <section id="inicio" class="portada">
-            <article class="form-card encabezado">
-                <div class="barra-verde" aria-hidden="true"></div>
-                <p class="etiqueta-proyecto">PROYECTO DE APRENDIZAJE</p>
-                <h1>⚛️ Tabla Periódica</h1>
-                <p class="subtitulo">Número atómico</p>
-                <div class="separador"></div>
-                <p class="texto-intro">
-                    Pon a prueba tus conocimientos y aprende los números atómicos
-                    de los primeros 20 elementos químicos.
-                </p>
-            </article>
-
-            <article class="form-card imagen-card">
-                <img
-                    class="imagen-portada"
-                    src="portada-manga.jpg"
-                    alt="Ilustración en blanco y negro para la portada del proyecto"
-                >
-            </article>
-
-            <article class="form-card bienvenida-card">
-                <h2>¡Es hora de practicar!</h2>
-                <p>
-                    Responde cada pregunta seleccionando una de las cinco alternativas.
-                    Recibirás una corrección inmediata y podrás repasar las respuestas
-                    que te hayan resultado difíciles.
-                </p>
-                <div class="detalles-quiz">
-                    <span>20 elementos</span>
-                    <span>5 alternativas</span>
-                    <span>Corrección inmediata</span>
-                </div>
-                <button id="btnComenzar" class="boton-principal" type="button">
-                    Comenzar el quiz
-                </button>
-            </article>
-        </section>
-
-        <!-- QUIZ: pantalla oscura con tarjetas grandes y alternativas verticales -->
-        <section id="zonaJuego" class="quiz-screen" hidden>
-            <div class="quiz-shell">
-                <div class="quiz-meta">
-                    <span class="quiz-etiqueta">TABLA PERIÓDICA</span>
-                    <span id="contador">Pregunta 1</span>
-                </div>
-
-                <article class="tarjeta-pregunta">
-                    <p class="indicacion">ELIGE LA RESPUESTA CORRECTA</p>
-                    <h2 id="pregunta" class="pregunta"></h2>
-                </article>
-
-                <div id="opciones" class="opciones" aria-label="Alternativas de respuesta"></div>
-                <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
-            </div>
-        </section>
-
-        <!-- PANTALLA FINAL -->
-        <section id="finalizado" class="quiz-screen" hidden>
-            <div class="quiz-shell pantalla-final">
-                <article class="tarjeta-final">
-                    <div class="icono-final" aria-hidden="true">✓</div>
-                    <h2>¡Repaso completado!</h2>
-                    <p>
-                        Has terminado la práctica. Las preguntas que fallaste
-                        volvieron a aparecer para que pudieras repasarlas.
-                    </p>
-                    <button id="btnReiniciar" class="boton-principal" type="button">
-                        Reiniciar quiz
-                    </button>
-                    <button id="btnPortada" class="boton-secundario" type="button">
-                        Volver a la portada
-                    </button>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
+<body>
 </body>
+
 </html>
