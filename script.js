@@ -23,7 +23,8 @@ const elementos = [
 
 let preguntas = [];
 let indiceActual = 0;
-let respondida = false;
+let bloqueado = false;
+let temporizador = null;
 
 const inicio = document.getElementById("inicio");
 const zonaJuego = document.getElementById("zonaJuego");
@@ -32,7 +33,6 @@ const pregunta = document.getElementById("pregunta");
 const opciones = document.getElementById("opciones");
 const mensaje = document.getElementById("mensaje");
 const btnComenzar = document.getElementById("btnComenzar");
-const btnSiguiente = document.getElementById("btnSiguiente");
 const btnInicio = document.getElementById("btnInicio");
 
 function mezclar(lista) {
@@ -45,11 +45,19 @@ function mezclar(lista) {
 }
 
 function volverAlInicio() {
+    if (temporizador) {
+        clearTimeout(temporizador);
+        temporizador = null;
+    }
+
     inicio.hidden = false;
     zonaJuego.hidden = true;
     finalizado.hidden = true;
     preguntas = [];
     indiceActual = 0;
+    bloqueado = false;
+    opciones.replaceChildren();
+    mensaje.textContent = "";
 }
 
 function iniciarQuiz() {
@@ -68,13 +76,12 @@ function mostrarPregunta() {
         return;
     }
 
-    respondida = false;
+    bloqueado = false;
     const actual = preguntas[indiceActual];
 
     pregunta.textContent = `¿Cuál es el número atómico del ${actual.nombre}?`;
     mensaje.textContent = "";
     mensaje.className = "";
-    btnSiguiente.hidden = true;
     opciones.replaceChildren();
 
     const numeros = Array.from({ length: 20 }, (_, i) => i + 1);
@@ -88,49 +95,43 @@ function mostrarPregunta() {
         boton.type = "button";
         boton.textContent = numero;
         boton.className = "opcion";
-        boton.addEventListener("click", () => {
-            comprobarRespuesta(numero, actual.numero, boton);
-        });
+        boton.addEventListener("click", () => responder(numero, actual.numero, boton));
         opciones.appendChild(boton);
     });
 }
 
-function comprobarRespuesta(seleccionada, correcta, botonSeleccionado) {
-    if (respondida) return;
-    respondida = true;
+function responder(seleccionada, correcta, botonSeleccionado) {
+    if (bloqueado) return;
+    bloqueado = true;
 
-    opciones.querySelectorAll("button").forEach(boton => {
-        boton.disabled = true;
-        if (Number(boton.textContent) === correcta) {
-            boton.classList.add("correcta");
-        }
-    });
-
+    // Solo se colorea la alternativa que el usuario seleccionó.
     if (seleccionada === correcta) {
-        mensaje.textContent = "¡Correcto! Seguimos aprendiendo.";
+        botonSeleccionado.classList.add("correcta");
+        mensaje.textContent = "¡Correcto!";
         mensaje.className = "mensaje-correcto";
     } else {
         botonSeleccionado.classList.add("incorrecta");
-        mensaje.textContent = `Todavía no. La respuesta correcta es ${correcta}. Esta pregunta volverá a aparecer más adelante.`;
+        mensaje.textContent = "¡Inténtalo otra vez más adelante!";
         mensaje.className = "mensaje-error";
 
-        // La pregunta fallada se agrega al final de las preguntas pendientes.
+        // La pregunta incorrecta se mueve al final de las pendientes.
         preguntas.push(preguntas[indiceActual]);
     }
 
-    btnSiguiente.textContent =
-        indiceActual === preguntas.length - 1 ? "Terminar" : "Continuar";
-    btnSiguiente.hidden = false;
+    // Se bloquean las opciones sin cambiar su color.
+    opciones.querySelectorAll("button").forEach(boton => {
+        boton.disabled = true;
+    });
+
+    // Avance automático después de mostrar brevemente el color elegido.
+    temporizador = setTimeout(() => {
+        temporizador = null;
+        indiceActual++;
+        mostrarPregunta();
+    }, 850);
 }
 
 btnComenzar.addEventListener("click", iniciarQuiz);
-
-btnSiguiente.addEventListener("click", () => {
-    indiceActual++;
-    mostrarPregunta();
-});
-
 btnInicio.addEventListener("click", volverAlInicio);
 
-// Al abrir la página, se muestra primero la bienvenida.
 volverAlInicio();
