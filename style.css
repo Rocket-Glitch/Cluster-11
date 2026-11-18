@@ -1,13 +1,17 @@
-
-/* ESTILOS CSS */
+/* ESTILOS GENERALES */
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: Arial, sans-serif;
     background-color: #eef2f7;
     margin: 0;
+    min-height: 100vh;
     padding: 30px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .tarjeta {
@@ -22,74 +26,26 @@ body {
 
 h1 {
     color: #234e70;
+    font-size: 32px;
+    margin-top: 0;
 }
 
-.contador {
-    color: #64748b;
+.subtitulo {
+    color: #234e70;
+    font-size: 23px;
     font-weight: bold;
+    margin: 18px 0;
+}
+
+.introduccion {
+    color: #64748b;
+    line-height: 1.6;
+    margin: 20px 0 28px;
 }
 
 .pregunta {
+    color: #234e70;
     font-size: 22px;
-    margin: 25px 0;
-}
-
-.opciones {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-}
-
-.opcion {
-    padding: 15px;
-    font-size: 18px;
-    border: 2px solid #234e70;
-    border-radius: 8px;
-    background-color: white;
-    cursor: pointer;
-}
-
-.opcion:hover:not(:disabled) {
-    background-color: #dbeafe;
-}
-
-.correcta {
-    background-color: #bbf7d0;
-    border-color: #16a34a;
-}
-
-.incorrecta {
-    background-color: #fecaca;
-    border-color: #dc2626;
-}
-
-.boton-principal {
-    margin-top: 25px;
-    padding: 12px 25px;
-    background-color: #234e70;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.boton-principal:disabled {
-    background-color: #94a3b8;
-    cursor: not-allowed;
-}
-
-#mensaje {
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-@media (max-width: 450px) {
-    .opciones {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    line-height: 1.4;
+    margin: 5px 0 25px;
 }
