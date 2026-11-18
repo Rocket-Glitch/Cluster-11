@@ -1,1 +1,51 @@
 
+{
+  "materia": "Matemáticas",
+  "tema": "Cálculo diferencial",
+  "titulo": "Derivadas básicas",
+  "tarjetas": [
+    {
+      "id": 1,
+      "pregunta": "¿Cuál es la derivada de una constante?",
+      "respuesta": "\\[\\frac{d}{dx}[n]=0\\]",
+      "explicacion": "La derivada de una constante es cero."
+    },
+    {
+      "id": 2,
+      "pregunta": "¿Cómo se deriva una constante multiplicada por una función?",
+      "respuesta": "\\[\\frac{d}{dx}[n\\cdot u]=n\\cdot u'\\]",
+      "explicacion": "Se conserva la constante y se deriva la función."
+    },
+    {
+      "id": 3,
+      "pregunta": "¿Cuál es la regla de la potencia?",
+      "respuesta": "\\[\\frac{d}{dx}[x^n]=n\\cdot x^{n-1}\\]",
+      "explicacion": "El exponente pasa a multiplicar y se reduce en una unidad."
+    },
+    {
+      "id": 4,
+      "pregunta": "¿Cuál es la regla de derivación del producto?",
+      "respuesta": "\\[\\frac{d}{dx}[u\\cdot v]=u'\\cdot v+v'\\cdot u\\]",
+      "explicacion": "Derivada del primero por el segundo sin derivar, más derivada del segundo por el primero sin derivar."
+    },
+    {
+      "id": 5,
+      "pregunta": "¿Cuál es la regla de derivación del cociente?",
+      "respuesta": "\\[\\frac{d}{dx}\\left[\\frac{u}{v}\\right]=\\frac{u'\\cdot v-v'\\cdot u}{v^2}\\]",
+      "explicacion": "Derivada del numerador por el denominador, menos derivada del denominador por el numerador, dividido entre el denominador al cuadrado."
+    },
+    {
+      "id": 6,
+      "pregunta": "¿Cómo se deriva una raíz de índice n?",
+      "respuesta": "\\[\\frac{d}{dx}\\left[\\sqrt[n]{u}\\right]=\\frac{u'}{n\\cdot\\sqrt[n]{u^{n-1}}}\\]",
+      "explicacion": "Se divide la derivada de la función entre n multiplicado por la raíz de índice n de u elevado a n menos uno."
+    },
+    {
+      "id": 7,
+      "pregunta": "¿Cuánto vale el logaritmo natural de e?",
+      "respuesta": "\\[\\ln(e)=1\\]",
+      "explicacion": "El logaritmo natural de e es igual a uno."
+    }
+  ]
+}
+
