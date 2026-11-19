@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#c7e8ce">
-<title>Mi Cluster 11</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#c7e8ce">
+  <title>Mi Cluster 11</title>
+  <link rel="stylesheet" href="style.css">
 
+  <!-- Configuración de MathJax: debe ir antes de cargar MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      chtml: {
+        scale: 1,
+        linebreaks: {
+          automatic: true,
+          width: 'container'
+        }
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    };
+  </script>
+
+  <!-- CHTML suele adaptarse mejor a pantallas pequeñas que la salida SVG -->
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+  <script defer src="script.js"></script>
 </head>
 
 <body>
-<h2 id="Pregunta"></h2>
-<button id="Mostrar">Mostrar respuesta</button>
-<h2 id="Respuesta" hidden></h2>
-<h2 id="progreso"></h2>
-<button id="Rojo" hidden>NO11</button>
-<button id="Verde" hidden>SÍ11</button>
-<script src="script.js"></script>
-</body>
+  <main class="app">
+    <section class="tarjeta" aria-live="polite">
+      <div id="Pregunta" class="contenido"></div>
+      <div id="Respuesta" class="contenido respuesta" hidden></div>
+    </section>
 
+    <footer class="controles">
+      <button id="Mostrar" class="boton boton-mostrar" type="button">
+        Mostrar respuesta
+      </button>
+
+      <div id="Evaluacion" class="evaluacion" hidden>
+        <button id="Rojo" class="boton boton-rojo" type="button">Rojo</button>
+        <button id="Verde" class="boton boton-verde" type="button">Verde</button>
+      </div>
+    </footer>
+  </main>
+</body>
 </html>

@@ -1,86 +1,79 @@
-// MATHJAX 4
-window.MathJax = {
-    tex: {
-        inlineMath: [['\\(', '\\)']],
-        displayMath: [['\\[', '\\]']]
-    }
-};
-
-// Cargar MathJax
-const script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js';
-script.async = true;
-script.onload = iniciar;
-document.head.appendChild(script);
-
-
 let pendientes = [];
-let actual;
-let aprendidas = 0;
-
-// Cargar las preguntas.
-async function iniciar() {
-    const archivo = await fetch("data/derivadas.json");
-    const datos = await archivo.json();
-
-    pendientes = datos.tarjetas.sort(() => Math.random() - 0.5);
-
-    mostrarSiguiente();
-}
-
-// Mostrar la siguiente pregunta.
-async function mostrarSiguiente() {
-    if (pendientes.length === 0) {
-        document.getElementById("Pregunta").textContent = "¡Terminaste!";
-        document.getElementById("progreso").textContent = "Todas aprendidas.";
-        document.getElementById("Mostrar").hidden = true;
-        document.getElementById("Rojo").hidden = true;
-        document.getElementById("Verde").hidden = true;
-       
-        return;
-    }
-
-    actual = pendientes.shift();
+let actual = null;
 
 const pregunta = document.getElementById("Pregunta");
 const respuesta = document.getElementById("Respuesta");
+const botonMostrar = document.getElementById("Mostrar");
+const evaluacion = document.getElementById("Evaluacion");
+const botonRojo = document.getElementById("Rojo");
+const botonVerde = document.getElementById("Verde");
 
-MathJax.typesetClear([pregunta, respuesta]);
+// Esperar a que MathJax esté listo antes de cargar y mostrar las tarjetas.
+async function iniciar() {
+  try {
+    await MathJax.startup.promise;
 
-pregunta.textContent = actual.Pregunta;
-respuesta.textContent = actual.Respuesta;
+    const archivo = await fetch("data/derivadas.json");
+    if (!archivo.ok) {
+      throw new Error(`No se pudo cargar el archivo: ${archivo.status}`);
+    }
 
-await MathJax.typesetPromise([pregunta]);
-    document.getElementById("Respuesta").hidden = true;
+    const datos = await archivo.json();
+    pendientes = [...datos.tarjetas].sort(() => Math.random() - 0.5);
 
-    document.getElementById("Mostrar").hidden = false;
-    document.getElementById("Rojo").hidden = true;
-    document.getElementById("Verde").hidden = true;
-
-    document.getElementById("progreso").textContent =
-        `Aprendidas: ${aprendidas}`;
+    mostrarSiguiente();
+  } catch (error) {
+    pregunta.textContent = "No se pudieron cargar las tarjetas.";
+    console.error(error);
+  }
 }
 
-// Mostrar la respuesta.
-document.getElementById("Mostrar").onclick = async () => {
-    document.getElementById("Respuesta").hidden = false;
-    document.getElementById("Mostrar").hidden = true;
-    document.getElementById("Rojo").hidden = false;
-    document.getElementById("Verde").hidden = false;
+// Limpiar el render anterior y volver a procesar las fórmulas.
+async function actualizarMatematicas(elemento) {
+  MathJax.typesetClear([elemento]);
+  await MathJax.typesetPromise([elemento]);
+}
 
-    await MathJax.typesetPromise([
-        document.getElementById("Respuesta")
-    ]);
-};
+// Mostrar la siguiente tarjeta.
+async function mostrarSiguiente() {
+  if (pendientes.length === 0) {
+    pregunta.textContent = "¡Terminaste! No quedan tarjetas pendientes.";
+    respuesta.hidden = true;
+    botonMostrar.hidden = true;
+    evaluacion.hidden = true;
+    return;
+  }
 
-// NO: devolver la pregunta al final.
-document.getElementById("Rojo").onclick = () => {
-    pendientes.push(actual);
-    mostrarSiguiente();
-};
+  actual = pendientes.shift();
 
-// SÍ: marcar como aprendida y avanzar.
-document.getElementById("Verde").onclick = () => {
-    aprendidas++;
-    mostrarSiguiente();
-};
+  pregunta.textContent = actual.Pregunta ?? "";
+  respuesta.textContent = actual.Respuesta ?? "";
+  respuesta.hidden = true;
+
+  botonMostrar.hidden = false;
+  evaluacion.hidden = true;
+
+  await actualizarMatematicas(pregunta);
+}
+
+// Mostrar la respuesta y habilitar los botones de evaluación.
+botonMostrar.addEventListener("click", async () => {
+  respuesta.hidden = false;
+  botonMostrar.hidden = true;
+  evaluacion.hidden = false;
+
+  await actualizarMatematicas(respuesta);
+});
+
+// Rojo: no la recordé. La tarjeta vuelve al final de la lista.
+botonRojo.addEventListener("click", () => {
+  pendientes.push(actual);
+  mostrarSiguiente();
+});
+
+// Verde: la recordé. Se continúa con la siguiente tarjeta.
+botonVerde.addEventListener("click", () => {
+  mostrarSiguiente();
+});
+
+iniciar();
