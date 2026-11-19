@@ -42,11 +42,15 @@ async function mostrarSiguiente() {
 
     actual = pendientes.shift();
 
-    document.getElementById("Pregunta").textContent = actual.Pregunta;
-    document.getElementById("Respuesta").textContent = actual.Respuesta;
-    await MathJax.typesetPromise([
-    document.getElementById("Pregunta")
-]);
+const pregunta = document.getElementById("Pregunta");
+const respuesta = document.getElementById("Respuesta");
+
+MathJax.typesetClear([pregunta, respuesta]);
+
+pregunta.textContent = actual.Pregunta;
+respuesta.textContent = actual.Respuesta;
+
+await MathJax.typesetPromise([pregunta]);
     document.getElementById("Respuesta").hidden = true;
 
     document.getElementById("Mostrar").hidden = false;
