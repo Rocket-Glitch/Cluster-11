@@ -1,138 +1,141 @@
 
+/* CONFIGURACIÓN GENERAL */
 * {
   box-sizing: border-box;
 }
 
-html, body {
-  min-height: 100%;
-  background: #c7e8ce;
-}
-
 body {
-  min-height: 100vh;
   margin: 0;
-  padding: 24px 16px 112px;
+  min-height: 100vh;
+  padding: 20px 16px 90px;
   font-family: Arial, sans-serif;
-  color: #202820;
+  color: #333;
+  background: #f5f5f5;
 }
 
+/* CONTENEDOR */
 .app {
-  width: 100%;
-  max-width: 760px;
-  min-height: calc(100vh - 136px);
+  max-width: 700px;
+  min-height: calc(100vh - 110px);
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+/* TARJETA */
 .tarjeta {
-  min-height: 280px;
-  padding: clamp(22px, 5vw, 42px);
+  width: 100%;
+  min-height: 250px;
+  padding: 25px 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 28px;
+  gap: 20px;
   background: white;
-  border-radius: 18px;
-  box-shadow: 0 5px 18px #1f42201f;
-  overflow: hidden;
+  border-radius: 8px;
 }
 
+/* PREGUNTA Y RESPUESTA */
 .contenido {
-  width: 100%;
-  min-width: 0;
   text-align: center;
-  font-size: clamp(20px, 4vw, 28px);
-  line-height: 1.6;
+  font-size: clamp(20px, 4vw, 26px);
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
 
 .respuesta {
-  padding-top: 24px;
-  border-top: 1px solid #e5e9e5;
-  color: #263b2b;
+  padding-top: 18px;
+  border-top: 1px solid #ddd;
+  color: #333;
 }
 
+/* ECUACIONES */
 mjx-container {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
-mjx-container[display="true"] {
-  margin: .8em 0 !important;
-}
-
+/* CONTROLES INFERIORES */
 .controles {
   position: fixed;
-  z-index: 10;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
-  background: #c7e8cef5;
-  backdrop-filter: blur(8px);
+  padding: 12px 16px;
+  background: #f5f5f5;
 }
 
+/* BOTONES */
 .boton, .evaluacion {
   width: 100%;
-  max-width: 760px;
+  max-width: 700px;
   margin: auto;
 }
 
 .boton {
-  min-height: 54px;
-  padding: 13px 20px;
-  border: 0;
-  border-radius: 12px;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  font-size: 16px;
   cursor: pointer;
-  touch-action: manipulation;
 }
 
 .boton:active {
-  transform: scale(.98);
+  background: #eee;
 }
 
 .boton-mostrar {
   display: block;
-  background: #286b43;
 }
 
 .evaluacion {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
-.boton-rojo { background: #d94343; }
-.boton-verde { background: #269653; }
+.boton-rojo {
+  background: #e57373;
+  color: white;
+  border: 0;
+}
 
+.boton-verde {
+  background: #66bb6a;
+  color: white;
+  border: 0;
+}
+
+/* ELEMENTOS OCULTOS */
 [hidden] {
   display: none !important;
 }
 
+/* CELULARES */
 @media (max-width: 600px) {
-  body { padding: 14px 12px 100px; }
-
-  .app { min-height: calc(100vh - 114px); }
-
-  .tarjeta {
-    min-height: 240px;
-    padding: 22px 16px;
-    border-radius: 14px;
+  body {
+    padding: 12px 10px 80px;
   }
 
-  .contenido { font-size: 20px; }
+  .tarjeta {
+    min-height: 220px;
+    padding: 20px 10px;
+  }
+
+  .contenido {
+    font-size: 20px;
+  }
 
   .controles {
-    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    padding: 10px;
   }
 
   .boton {
-    min-height: 52px;
-    font-size: 16px;
+    min-height: 46px;
+    font-size: 15px;
   }
 }
