@@ -33,9 +33,9 @@ function mostrarSiguiente() {
     if (pendientes.length === 0) {
         document.getElementById("Pregunta").textContent = "¡Terminaste!";
         document.getElementById("progreso").textContent = "Todas aprendidas.";
-        document.getElementById("mostrar").hidden = true;
-        document.getElementById("no").hidden = true;
-        document.getElementById("si").hidden = true;
+        document.getElementById("Mostrar").hidden = true;
+        document.getElementById("Rojo").hidden = true;
+        document.getElementById("Verde").hidden = true;
         window.close();
         return;
     }
@@ -46,20 +46,20 @@ function mostrarSiguiente() {
     document.getElementById("Respuesta").textContent = actual.Respuesta;
     document.getElementById("Respuesta").hidden = true;
 
-    document.getElementById("mostrar").hidden = false;
-    document.getElementById("no").hidden = true;
-    document.getElementById("si").hidden = true;
+    document.getElementById("Mostrar").hidden = false;
+    document.getElementById("Rojo").hidden = true;
+    document.getElementById("Verde").hidden = true;
 
     document.getElementById("progreso").textContent =
         `Aprendidas: ${aprendidas}`;
 }
 
 // Mostrar la respuesta.
-document.getElementById("mostrar").onclick = async () => {
+document.getElementById("Mostrar").onclick = async () => {
     document.getElementById("Respuesta").hidden = false;
-    document.getElementById("mostrar").hidden = true;
-    document.getElementById("no").hidden = false;
-    document.getElementById("si").hidden = false;
+    document.getElementById("Mostrar").hidden = true;
+    document.getElementById("Rojo").hidden = false;
+    document.getElementById("Verde").hidden = false;
 
     await MathJax.typesetPromise([
         document.getElementById("Respuesta")
@@ -67,13 +67,13 @@ document.getElementById("mostrar").onclick = async () => {
 };
 
 // NO: devolver la pregunta al final.
-document.getElementById("no").onclick = () => {
+document.getElementById("Rojo").onclick = () => {
     pendientes.push(actual);
     mostrarSiguiente();
 };
 
 // SÍ: marcar como aprendida y avanzar.
-document.getElementById("si").onclick = () => {
+document.getElementById("Verde").onclick = () => {
     aprendidas++;
     mostrarSiguiente();
 };
