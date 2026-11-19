@@ -1,0 +1,30 @@
+[
+{
+"Pregunta": "\\( 1. \\; \\dfrac{d}{dx}\\Big[n\\Big] = \\)",
+"Respuesta": "\\( 0 \\)"
+},
+{
+"Pregunta": "\\( 2. \\; \\dfrac{d}{dx}\\Big[n \\cdot u\\Big] = \\)",
+"Respuesta": "\\( n \\cdot u' \\)"
+},
+{
+"Pregunta": "\\( 3. \\; \\dfrac{d}{dx}\\Big[x^n\\Big] = \\)",
+"Respuesta": "\\( n \\cdot x^{n-1} \\)"
+},
+{
+"Pregunta": "\\( 4. \\; \\dfrac{d}{dx}\\Big[u \\cdot v\\Big] = \\)",
+"Respuesta": "\\( u' \\cdot v + v' \\cdot u \\)"
+},
+{
+"Pregunta": "\\( 5. \\; \\dfrac{d}{dx}\\Big[\\dfrac{u}{v}\\Big] = \\)",
+"Respuesta": "\\( \\dfrac{u' \\cdot v - v' \\cdot u}{v^2} \\)"
+},
+{
+"Pregunta": "\\( 6. \\; \\dfrac{d}{dx}\\Big[\\sqrt[n]{u}\\Big] = \\)",
+"Respuesta": "\\( \\dfrac{u'}{n \\cdot \\sqrt[n]{u^{n-1}}} \\)"
+},
+{
+"Pregunta": "\\( 7. \\; \\ln(e) = \\)",
+"Respuesta": "\\( 1 \\)"
+}
+]
