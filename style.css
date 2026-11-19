@@ -1,43 +1,41 @@
-
 /* CONFIGURACIÓN GENERAL */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 100px 100px 100px;
+  padding: 20px;                 /* marco alrededor de la tarjeta */
   font-family: Arial, sans-serif;
-color: #ff0000;
-  background: #4caf50;
+  color: #ff0000;
+  background: #4caf50;           /* único fondo del viewport */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* CONTENEDOR */
 .app {
+  width: 100%;
   max-width: 700px;
-  min-height: calc(100vh - 110px);
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-justify-content: space-between;
 }
 
-/* TARJETA */
+/* ÚNICA TARJETA: un solo fondo aplicado a TODO el contenido */
 .tarjeta {
-  width: 100%;
-  min-height: 250px;
-  padding: 25px 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 20px;
-  background: white;
+  min-height: calc(100vh - 40px);   /* 100vh menos el padding del body */
+  padding: 25px 15px;
+  background: white;                /* este es EL fondo único */
   border-radius: 8px;
 }
 
-/* PREGUNTA Y RESPUESTA */
+/* PREGUNTA Y RESPUESTA (ocupa el espacio libre) */
 .contenido {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   font-size: clamp(20px, 4vw, 26px);
   line-height: 1.5;
@@ -57,24 +55,16 @@ mjx-container {
   overflow-y: hidden;
 }
 
-/* CONTROLES INFERIORES */
+/* CONTROLES: ya NO son position:fixed, viven dentro de la tarjeta */
 .controles {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 12px 16px;
-  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* BOTONES */
-.boton, .evaluacion {
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-}
-
 .boton {
+  width: 100%;
   min-height: 48px;
   padding: 12px;
   border: 1px solid #ccc;
@@ -85,31 +75,9 @@ mjx-container {
   cursor: pointer;
 }
 
-.boton:active {
-  background: #eee;
-}
+.boton:active { background: #eee; }
 
-.boton-mostrar {
-  display: block;
-}
+.boton-rojo  { background: #e57373; color: white; border: 0; }
+.boton-verde { background: #66bb6a; color: white; border: 0; }
 
-
-.boton-rojo {
-  background: #e57373;
-  color: white;
-  border: 0;
-}
-
-.boton-verde {
-  background: #66bb6a;
-  color: white;
-  border: 0;
-}
-
-/* ELEMENTOS OCULTOS */
-[hidden] {
-  display: none !important;
-}
-
-
-}
+[hidden] { display: none !important; }
