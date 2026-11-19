@@ -1,34 +1,28 @@
 * { box-sizing: border-box; }
 
+/* UN SOLO FONDO PARA TODO EL VIEWPORT */
 body {
   margin: 0;
   min-height: 100vh;
   padding: 20px;
   font-family: Arial, sans-serif;
-  color: #000;
-  background: #4caf50;
+  color: #000;                 /* texto negro */
+  background: #4caf50;         /* ← el ÚNICO fondo, aplica a toda la pantalla */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
 }
 
+/* CONTENEDOR: sin caja, solo organiza verticalmente */
 .app {
   width: 100%;
   max-width: 700px;
-}
-
-/* TARJETA: ya SIN caja blanca ni borde */
-.tarjeta {
+  min-height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
-  gap: 12px;                        /* menos aire entre elementos */
-  min-height: calc(100vh - 40px);
-  padding: 0;                       /* sin relleno de caja */
-  background: transparent;          /* ← fuera la caja blanca */
-  border-radius: 0;                 /* ← fuera las esquinas redondeadas */
+  gap: 20px;
 }
 
-/* PREGUNTA Y RESPUESTA: un solo bloque de texto */
+/* PREGUNTA + RESPUESTA: un solo bloque de TEXTO, sin caja */
 .contenido {
   flex: 1;
   display: flex;
@@ -37,28 +31,31 @@ body {
   text-align: center;
   font-size: clamp(20px, 4vw, 26px);
   line-height: 1.5;
-  overflow-wrap: anywhere;
-  color: #000;
   font-weight: bold;
+  color: #000;                 /* todo negro */
+  overflow-wrap: anywhere;
 }
 
+/* Respuesta: mismo estilo que la pregunta, sin línea ni borde */
 .respuesta {
-  padding-top: 8px;                 /* espacio mínimo, sin línea */
-  /* border-top: 1px solid #ddd;   ← ELIMINADO: fuera la línea separadora */
+  margin-top: 6px;             /* separación mínima, sin línea divisoria */
 }
 
+/* ECUACIONES */
 mjx-container {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
+/* CONTROLES: abajo, flujo normal (no fixed) */
 .controles {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
+/* BOTONES */
 .boton {
   width: 100%;
   min-height: 48px;
