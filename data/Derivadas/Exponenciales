@@ -1,0 +1,14 @@
+[
+{
+"Pregunta": "\\( 1. \\; \\dfrac{d}{dx} \\Big[ u^v \\Big] = \\)",
+"Respuesta": "\\( u^v \\cdot \\Big[ u' \\cdot \\dfrac{v}{u} + v' \\cdot \\ln(u) \\Big] \\)"
+},
+{
+"Pregunta": "\\( 2. \\; \\dfrac{d}{dx} \\Big[ u^n \\Big] = \\)",
+"Respuesta": "\\( n \\cdot u^{n-1} \\cdot u' \\)"
+},
+{
+"Pregunta": "\\( 3. \\; \\dfrac{d}{dx} \\Big[ n^u \\Big] = \\)",
+"Respuesta": "\\( n^u \\cdot \\Big[ 0 + u' \\cdot \\ln(n) \\Big] \\)"
+}
+]
