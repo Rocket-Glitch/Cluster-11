@@ -1,8 +1,9 @@
+
 * {
   box-sizing: border-box;
 }
 
-html {
+html, body {
   min-height: 100%;
   background: #c7e8ce;
 }
@@ -11,32 +12,30 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 24px 16px 112px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   color: #202820;
-  background: #c7e8ce;
 }
 
 .app {
   width: 100%;
   max-width: 760px;
   min-height: calc(100vh - 136px);
-  margin: 0 auto;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .tarjeta {
-  width: 100%;
   min-height: 280px;
   padding: clamp(22px, 5vw, 42px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 28px;
-  background: #fff;
+  background: white;
   border-radius: 18px;
-  box-shadow: 0 5px 18px rgba(31, 66, 40, 0.12);
+  box-shadow: 0 5px 18px #1f42201f;
   overflow: hidden;
 }
 
@@ -47,7 +46,6 @@ body {
   font-size: clamp(20px, 4vw, 28px);
   line-height: 1.6;
   overflow-wrap: anywhere;
-  word-break: normal;
 }
 
 .respuesta {
@@ -56,7 +54,6 @@ body {
   color: #263b2b;
 }
 
-/* Evita que las ecuaciones anchas rompan el ancho del celular. */
 mjx-container {
   max-width: 100%;
   overflow-x: auto;
@@ -64,25 +61,24 @@ mjx-container {
 }
 
 mjx-container[display="true"] {
-  max-width: 100%;
-  margin: 0.8em 0 !important;
+  margin: .8em 0 !important;
 }
 
 .controles {
   position: fixed;
   z-index: 10;
-  left: 0;
-  right: 0;
   bottom: 0;
+  left: 0;
   width: 100%;
   padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
-  background: rgba(199, 232, 206, 0.96);
+  background: #c7e8cef5;
   backdrop-filter: blur(8px);
 }
 
-.boton,
-.evaluacion {
+.boton, .evaluacion {
   width: 100%;
+  max-width: 760px;
+  margin: auto;
 }
 
 .boton {
@@ -90,51 +86,38 @@ mjx-container[display="true"] {
   padding: 13px 20px;
   border: 0;
   border-radius: 12px;
-  color: #fff;
+  color: white;
   font-size: 17px;
-  font-weight: 700;
+  font-weight: bold;
   cursor: pointer;
   touch-action: manipulation;
 }
 
 .boton:active {
-  transform: scale(0.98);
+  transform: scale(.98);
 }
 
 .boton-mostrar {
-  max-width: 760px;
   display: block;
-  margin: 0 auto;
   background: #286b43;
 }
 
 .evaluacion {
-  max-width: 760px;
   display: flex;
   gap: 12px;
-  margin: 0 auto;
 }
 
-.boton-rojo {
-  background: #d94343;
-}
-
-.boton-verde {
-  background: #269653;
-}
+.boton-rojo { background: #d94343; }
+.boton-verde { background: #269653; }
 
 [hidden] {
   display: none !important;
 }
 
 @media (max-width: 600px) {
-  body {
-    padding: 14px 12px 100px;
-  }
+  body { padding: 14px 12px 100px; }
 
-  .app {
-    min-height: calc(100vh - 114px);
-  }
+  .app { min-height: calc(100vh - 114px); }
 
   .tarjeta {
     min-height: 240px;
@@ -142,9 +125,7 @@ mjx-container[display="true"] {
     border-radius: 14px;
   }
 
-  .contenido {
-    font-size: 20px;
-  }
+  .contenido { font-size: 20px; }
 
   .controles {
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
