@@ -115,27 +115,5 @@ mjx-container {
   display: none !important;
 }
 
-/* CELULARES */
-@media (max-width: 600px) {
-  body {
-    padding: 12px 10px 80px;
-  }
 
-  .tarjeta {
-    min-height: 220px;
-    padding: 20px 10px;
-  }
-
-  .contenido {
-    font-size: 20px;
-  }
-
-  .controles {
-    padding: 10px;
-  }
-
-  .boton {
-    min-height: 46px;
-    font-size: 15px;
-  }
 }
