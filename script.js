@@ -10,6 +10,7 @@ window.MathJax = {
 const script = document.createElement('script');
 script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-svg.js';
 script.async = true;
+script.onload = iniciar;
 document.head.appendChild(script);
 
 
