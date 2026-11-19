@@ -13,9 +13,12 @@ script.async = true;
 document.head.appendChild(script);
 
 
-// Bring the questions.
-bring("data/derivadas.json")
+fetch("data/derivadas.json") // Cargar preguntas
+.then(response => response.json()) // Leer datos
 .then(data => {
-create number = random(data.cards.amount);
-document.find("question").text =
-data.cards[number].question; });
+    // Elegir pregunta aleatoria
+    const number = Math.floor(Math.random() * data.tarjetas.length);
+
+    // Mostrar pregunta
+    document.getElementById("Pregunta").textContent = data.tarjetas[number].pregunta;
+});
