@@ -13,7 +13,7 @@ async function iniciar() {
   try {
     await MathJax.startup.promise;
 
-    const archivo = await fetch("data/derivadas.json");
+    const archivo = await fetch("data/Derivadas/Basicas.json");
     if (!archivo.ok) {
       throw new Error(`No se pudo cargar el archivo: ${archivo.status}`);
     }
