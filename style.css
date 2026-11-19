@@ -1,36 +1,34 @@
-/* CONFIGURACIÓN GENERAL */
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
-  padding: 20px;                 /* marco alrededor de la tarjeta */
+  padding: 20px;
   font-family: Arial, sans-serif;
-  color: #ff0000;
-  background: #c0e3c2;           /* único fondo del viewport */
+  color: #000;
+  background: #4caf50;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-/* CONTENEDOR */
 .app {
   width: 100%;
   max-width: 700px;
 }
 
-/* ÚNICA TARJETA: un solo fondo aplicado a TODO el contenido */
+/* TARJETA: ya SIN caja blanca ni borde */
 .tarjeta {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  min-height: calc(100vh - 40px);   /* 100vh menos el padding del body */
-  padding: 25px 15px;
-  background: white;                /* este es EL fondo único */
-  border-radius: 8px;
+  gap: 12px;                        /* menos aire entre elementos */
+  min-height: calc(100vh - 40px);
+  padding: 0;                       /* sin relleno de caja */
+  background: transparent;          /* ← fuera la caja blanca */
+  border-radius: 0;                 /* ← fuera las esquinas redondeadas */
 }
 
-/* PREGUNTA Y RESPUESTA (ocupa el espacio libre) */
+/* PREGUNTA Y RESPUESTA: un solo bloque de texto */
 .contenido {
   flex: 1;
   display: flex;
@@ -40,29 +38,27 @@ body {
   font-size: clamp(20px, 4vw, 26px);
   line-height: 1.5;
   overflow-wrap: anywhere;
+  color: #000;
+  font-weight: bold;
 }
 
 .respuesta {
-  padding-top: 18px;
-  border-top: 1px solid #ddd;
-  color: #333;
+  padding-top: 8px;                 /* espacio mínimo, sin línea */
+  /* border-top: 1px solid #ddd;   ← ELIMINADO: fuera la línea separadora */
 }
 
-/* ECUACIONES */
 mjx-container {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
-/* CONTROLES: ya NO son position:fixed, viven dentro de la tarjeta */
 .controles {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* BOTONES */
 .boton {
   width: 100%;
   min-height: 48px;
