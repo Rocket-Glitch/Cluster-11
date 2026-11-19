@@ -7,7 +7,7 @@ body {
   padding: 20px;                 /* marco alrededor de la tarjeta */
   font-family: Arial, sans-serif;
   color: #ff0000;
-  background: #4caf50;           /* único fondo del viewport */
+  background: #c0e3c2;           /* único fondo del viewport */
   display: flex;
   justify-content: center;
   align-items: flex-start;
