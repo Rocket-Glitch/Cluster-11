@@ -93,10 +93,6 @@ mjx-container {
   display: block;
 }
 
-.evaluacion {
-  display: flex;
-  gap: 8px;
-}
 
 .boton-rojo {
   background: #e57373;
