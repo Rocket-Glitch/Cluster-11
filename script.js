@@ -19,8 +19,7 @@ async function iniciar() {
     }
 
     const datos = await archivo.json();
-    pendientes = [...datos.tarjetas].sort(() => Math.random() - 0.5);
-
+    pendientes = [...datos].sort(() => Math.random() - 0.5);
     mostrarSiguiente();
   } catch (error) {
     pregunta.textContent = "No se pudieron cargar las tarjetas.";
