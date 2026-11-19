@@ -4,28 +4,28 @@
   "titulo": "Derivadas básicas",
   "tarjetas": [
     {
-      "Pregunta": "\\( 1. \\, \\frac{d}{dx}[n] = \\)",
+      "Pregunta": "\\( 1. \\, \\dfrac{d}{dx}[n] = \\)",
       "Respuesta": "\\( 0 \\)"
     },
     {
-      "Pregunta": "\\( 2. \\, \\frac{d}{dx}[n \\cdot u] = \\)",
+      "Pregunta": "\\( 2. \\, \\dfrac{d}{dx}[n \\cdot u] = \\)",
       "Respuesta": "\\( n \\cdot u' \\)"
     },
     {
-      "Pregunta": "\\( 3. \\, \\frac{d}{dx}[x^n] = \\)",
+      "Pregunta": "\\( 3. \\, \\dfrac{d}{dx}[x^n] = \\)",
       "Respuesta": "\\( n \\cdot x^{n-1} \\)"
     },
     {
-      "Pregunta": "\\( 4. \\, \\frac{d}{dx}[u \\cdot v] = \\)",
+      "Pregunta": "\\( 4. \\, \\dfrac{d}{dx}[u \\cdot v] = \\)",
       "Respuesta": "\\( u' \\cdot v + v' \\cdot u \\)"
     },
     {
-      "Pregunta": "\\( 5. \\, \\frac{d}{dx}\\left[\\frac{u}{v}\\right] = \\)",
-      "Respuesta": "\\( \\frac{u' \\cdot v - v' \\cdot u}{v^2} \\)"
+      "Pregunta": "\\( 5. \\, \\dfrac{d}{dx}\\left[\\dfrac{u}{v}\\right] = \\)",
+      "Respuesta": "\\( \\dfrac{u' \\cdot v - v' \\cdot u}{v^2} \\)"
     },
     {
-      "Pregunta": "\\( 6. \\, \\frac{d}{dx}\\left[\\sqrt[n]{u}\\right] = \\)",
-      "Respuesta": "\\( \\frac{u'}{n \\cdot \\sqrt[n]{u^{n-1}}} \\)"
+      "Pregunta": "\\( 6. \\, \\dfrac{d}{dx}\\left[\\sqrt[n]{u}\\right] = \\)",
+      "Respuesta": "\\( \\dfrac{u'}{n \\cdot \\sqrt[n]{u^{n-1}}} \\)"
     },
     {
       "Pregunta": "\\( 7. \\, \\ln(e) = \\)",
