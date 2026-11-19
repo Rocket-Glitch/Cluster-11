@@ -29,14 +29,14 @@ async function iniciar() {
 }
 
 // Mostrar la siguiente pregunta.
-function mostrarSiguiente() {
+async function mostrarSiguiente() {
     if (pendientes.length === 0) {
         document.getElementById("Pregunta").textContent = "¡Terminaste!";
         document.getElementById("progreso").textContent = "Todas aprendidas.";
         document.getElementById("Mostrar").hidden = true;
         document.getElementById("Rojo").hidden = true;
         document.getElementById("Verde").hidden = true;
-        window.close();
+       
         return;
     }
 
@@ -44,6 +44,9 @@ function mostrarSiguiente() {
 
     document.getElementById("Pregunta").textContent = actual.Pregunta;
     document.getElementById("Respuesta").textContent = actual.Respuesta;
+    await MathJax.typesetPromise([
+    document.getElementById("Pregunta")
+]);
     document.getElementById("Respuesta").hidden = true;
 
     document.getElementById("Mostrar").hidden = false;
