@@ -6,8 +6,8 @@ body {
   min-height: 100vh;
   padding: 20px;
   font-family: Arial, sans-serif;
-  color: #000;                 /* texto negro */
-  background: #4caf50;         /* ← el ÚNICO fondo, aplica a toda la pantalla */
+  color: #000;
+  background: #4caf50;
   display: flex;
   justify-content: center;
 }
@@ -22,49 +22,67 @@ body {
   gap: 20px;
 }
 
-/* PREGUNTA + RESPUESTA: un solo bloque de TEXTO, sin caja */
+/* PREGUNTA + RESPUESTA: solo texto, más grande */
 .contenido {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-size: clamp(20px, 4vw, 26px);
-  line-height: 1.5;
+  font-size: clamp(24px, 5vw, 34px);   /* ← más grande */
+  line-height: 1.4;
   font-weight: bold;
-  color: #000;                 /* todo negro */
+  color: #000;
   overflow-wrap: anywhere;
 }
 
-/* Respuesta: mismo estilo que la pregunta, sin línea ni borde */
+/* Respuesta: mismo estilo, sin línea */
 .respuesta {
-  margin-top: 6px;             /* separación mínima, sin línea divisoria */
+  margin-top: 6px;
 }
 
-/* ECUACIONES */
+/* ECUACIONES: más grandes y SIN CURSIVA */
 mjx-container {
+  font-size: 1.1em;                     /* ← un poco más grandes */
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
-/* CONTROLES: abajo, flujo normal (no fixed) */
+/* Quita la cursiva de las variables en MathJax */
+mjx-container mjx-mi mjx-c {
+  font-family: 'Times New Roman', Georgia, serif !important;
+  font-style: normal !important;
+}
+
+/* CONTROLES: pegados al fondo del .app */
 .controles {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: auto;   /* ← empuja todo al fondo */
+}
+
+/* FILA para rojo y verde lado a lado */
+.fila-botones {
+  display: flex;
+  gap: 10px;
+}
+
+.fila-botones .boton {
+  flex: 1;            /* los dos ocupan lo mismo */
 }
 
 /* BOTONES */
 .boton {
   width: 100%;
-  min-height: 48px;
+  min-height: 54px;                  /* ← más alto */
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
   background: #fff;
   color: #333;
-  font-size: 16px;
+  font-size: 18px;                   /* ← texto más grande */
   cursor: pointer;
 }
 
