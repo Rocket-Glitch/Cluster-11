@@ -13,12 +13,66 @@ script.async = true;
 document.head.appendChild(script);
 
 
-fetch("data/derivadas.json") // Cargar preguntas
-.then(response => response.json()) // Leer datos
-.then(data => {
-    // Elegir pregunta aleatoria
-    const number = Math.floor(Math.random() * data.tarjetas.length);
+let pendientes = [];
+let actual;
+let aprendidas = 0;
 
-    // Mostrar pregunta
-    document.getElementById("Pregunta").textContent = data.tarjetas[number].pregunta;
-});
+// Cargar las preguntas.
+async function iniciar() {
+    const archivo = await fetch("data/derivadas.json");
+    const datos = await archivo.json();
+
+    pendientes = datos.tarjetas.sort(() => Math.random() - 0.5);
+
+    mostrarSiguiente();
+}
+
+// Mostrar la siguiente pregunta.
+function mostrarSiguiente() {
+    if (pendientes.length === 0) {
+        document.getElementById("Pregunta").textContent = "¡Terminaste!";
+        document.getElementById("progreso").textContent = "Todas aprendidas.";
+        document.getElementById("mostrar").hidden = true;
+        document.getElementById("no").hidden = true;
+        document.getElementById("si").hidden = true;
+        window.close();
+        return;
+    }
+
+    actual = pendientes.shift();
+
+    document.getElementById("Pregunta").textContent = actual.Pregunta;
+    document.getElementById("Respuesta").textContent = actual.Respuesta;
+    document.getElementById("Respuesta").hidden = true;
+
+    document.getElementById("mostrar").hidden = false;
+    document.getElementById("no").hidden = true;
+    document.getElementById("si").hidden = true;
+
+    document.getElementById("progreso").textContent =
+        `Aprendidas: ${aprendidas}`;
+}
+
+// Mostrar la respuesta.
+document.getElementById("mostrar").onclick = async () => {
+    document.getElementById("Respuesta").hidden = false;
+    document.getElementById("mostrar").hidden = true;
+    document.getElementById("no").hidden = false;
+    document.getElementById("si").hidden = false;
+
+    await MathJax.typesetPromise([
+        document.getElementById("Respuesta")
+    ]);
+};
+
+// NO: devolver la pregunta al final.
+document.getElementById("no").onclick = () => {
+    pendientes.push(actual);
+    mostrarSiguiente();
+};
+
+// SÍ: marcar como aprendida y avanzar.
+document.getElementById("si").onclick = () => {
+    aprendidas++;
+    mostrarSiguiente();
+};
